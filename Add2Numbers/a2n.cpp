@@ -48,13 +48,12 @@ public:
     ListNode* prefillNode(int* data, int cntr){
         ListNode *nodeHead;
         nodeHead = new ListNode();
-        ListNode *nextNode;
-        nextNode = new ListNode();
         for(int i = 0; i < cntr; i++){
             nodeHead->val = *data;
+            ListNode *nextNode;
+            nextNode = new ListNode();
             nodeHead->next = nextNode;
             nodeHead = nextNode;
-            nextNode = new ListNode();
             data++;
         }
         return nodeHead;
@@ -62,6 +61,7 @@ public:
 
     void printList(ListNode* n) 
     { 
+        cout << "\n Print List:";
         while (n != NULL) { 
         cout << n->val << " "; 
         n = n->next; 
