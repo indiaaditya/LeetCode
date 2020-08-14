@@ -58,6 +58,15 @@ public:
             data++;
         }
     }
+
+    void printList(ListNode* n) 
+    { 
+        while (n != NULL) { 
+        cout << n->val << " "; 
+        n = n->next; 
+    } 
+} 
+
 };
 
 
@@ -82,9 +91,10 @@ int main(){
     arr[9] = 9;
 
     //
-    cout<<"Start";
+    cout<<"\nStart\n\n\n";
     Solution s1;
     l3 = s1.prefillNode(arr,10);
     //l3 = s1.addTwoNumbers(l1,l2);
-    cout << "L3:" << l3; 
+    s1.printList(l3);
+    //cout << "L3:" << *l3; 
 }
