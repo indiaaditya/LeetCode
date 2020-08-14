@@ -57,6 +57,7 @@ public:
             nextNode = new ListNode();
             data++;
         }
+        return nodeHead;
     }
 
     void printList(ListNode* n) 
