@@ -59,6 +59,23 @@ public:
         return nodeHead;
     }
 
+    ListNode* createHeadNode(int rData){
+        ListNode *nodeHead;
+        nodeHead = new ListNode();
+        nodeHead->val = rData;
+        nodeHead->next = NULL;
+        return nodeHead;
+    }
+
+    ListNode* nextNode(int rData, ListNode* rPrevNode){
+        ListNode *nodeNext;
+        nodeNext = new ListNode();
+        nodeNext->val = rData;
+        nodeNext->next = NULL;
+        rPrevNode->next = nodeNext;
+        return nodeNext;
+    }
+
     void printList(ListNode* n) 
     { 
         cout << "\n Print List:";
@@ -76,26 +93,11 @@ int main(){
     ListNode *l1;
     ListNode *l2;
     ListNode *l3;
-    l1 = new ListNode();
-    l2 = new ListNode();
-    l3 = new ListNode();
-    int arr[10];
-    arr[0] = 0;
-    arr[1] = 1;
-    arr[2] = 2;
-    arr[3] = 3;
-    arr[4] = 4;
-    arr[5] = 5;
-    arr[6] = 6;
-    arr[7] = 7;
-    arr[8] = 8;
-    arr[9] = 9;
-
-    //
     cout<<"\nStart\n\n\n";
     Solution s1;
-    l3 = s1.prefillNode(arr,10);
-    //l3 = s1.addTwoNumbers(l1,l2);
-    s1.printList(l3);
-    //cout << "L3:" << *l3; 
+    l1 = s1.createHeadNode(10);
+    l2 = s1.nextNode(20,l1);
+    l3 = s1.nextNode(30,l2);
+    s1.printList(l1);
+    cout<< "\nComplete\n"; 
 }
