@@ -43,15 +43,35 @@ public:
          cntr++;
      }
      while(l1 != NULL){
-         nextNode = createNextNode(i,nextNode);
+         i = l1->val;
+         if(carry == 1){
+             i++;
+             carry = 0;
+         }
+         if(i > 9){
+             carry = 1;
+             i -= 10;
+         }
+
+         nextNode = createNextNode(l1->val,nextNode);
          l1 = l1->next;
          cntr++;
      }
      while(l2 != NULL){
+        if(carry == 1){
+             i++;
+             carry = 0;
+         }
+         if(i > 9){
+             carry = 1;
+             i -= 10;
+         }
          nextNode = createNextNode(i,nextNode);         
          l2 = l2->next;
          cntr++;
      }
+     if(carry == 1)
+        nextNode = createNextNode(1,nextNode);
      return retNodeFirst;      
     }
 
