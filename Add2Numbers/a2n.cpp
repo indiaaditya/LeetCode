@@ -40,14 +40,17 @@ public:
         }
          l1 = l1->next;
          l2 = l2->next;
+         cntr++;
      }
      while(l1 != NULL){
          nextNode = createNextNode(i,nextNode);
          l1 = l1->next;
+         cntr++;
      }
      while(l2 != NULL){
          nextNode = createNextNode(i,nextNode);         
          l2 = l2->next;
+         cntr++;
      }
      return retNodeFirst;      
     }
