@@ -69,6 +69,7 @@ public:
         }
         while (l2 != NULL)
         {
+            i = l2->val;
             if (carry == 1)
             {
                 i++;
