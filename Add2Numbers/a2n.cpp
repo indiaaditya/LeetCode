@@ -62,20 +62,30 @@ public:
         return nodeNext;
     }
 
-    void printList(ListNode* n) 
-    { 
+    void printList(ListNode *n)
+    {
         cout << "\n Print List:";
-        while (n != NULL) { 
-        cout << n->val << " "; 
-        n = n->next; 
+        while (n != NULL)
+        {
+            cout << n->val << " ";
+            n = n->next;
+        }
     }
 
     ListNode* prefillNode(int* data, int cntr){
-
-        return nodeHead;
+        ListNode *nodeFirst;    
+        nodeFirst = createHeadNode(*data);
+        cntr--;
+        data++;
+        ListNode *nodeNext;
+        nodeNext = createNextNode(*data,nodeFirst);
+        cntr--;
+        data++;
+        for(int i = 0; i < cntr; i++){
+            nodeNext = createNextNode(*data,nodeNext);
+        }
+        return nodeFirst;
     } 
-} 
-
 };
 
 
