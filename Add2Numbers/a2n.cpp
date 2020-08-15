@@ -93,23 +93,15 @@ int main(){
     //declaration of nodes
     ListNode *l1;
     ListNode *l2;
-    ListNode *l3;
-    cout<<"\nStart\n\n\n";
-    Solution s1;
-    l1 = s1.createHeadNode(7);
-    l2 = s1.createNextNode(8,l1);
-    l3 = s1.createNextNode(9,l2);
-    cout << "First Node: \n";
-    s1.printList(l1);
 
-    ListNode *n1;
-    ListNode *n2;
-    ListNode *n3;
-    n1 = s1.createHeadNode(1);
-    n2 = s1.createNextNode(2,n1);
-    n3 = s1.createNextNode(3,n2);
-    cout << "Second Node: \n";
-    s1.printList(n1);
+    int firstArr[4] = {7,8,9,1};
+    int secondArr[4] = {4,6,7,3};
+
+    Solution s1;
+    l1 = s1.prefillNode(firstArr,4);
+    l2 = s1.prefillNode(secondArr,4);
+    s1.printList(l1);
+    s1.printList(l2);
 
     cout<< "\nComplete\n"; 
 }
