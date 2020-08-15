@@ -83,6 +83,7 @@ public:
         data++;
         for(int i = 0; i < cntr; i++){
             nodeNext = createNextNode(*data,nodeNext);
+            data++;
         }
         return nodeFirst;
     } 
