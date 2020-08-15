@@ -15,34 +15,41 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
      int carry = 0;
-     ListNode* retNode = new ListNode();   
-     while( (l1 != NULL) && (l2 != NULL)){
-         retNode->val = (l1->val + l2->val);
-         retNode->next = NULL;
+     ListNode* retNodeFirst;
+     ListNode* nextNode;  
+     int cntr = 0; 
+     int i;
+     while((l1 != NULL) && (l2 != NULL)){         
+         i = (l1->val + l2->val);
          if(carry == 1){
-             retNode->val++;
+             i++;
              carry = 0;
          }
-         if(retNode->val > 9){
+         if(i > 9){
              carry = 1;
-             retNode->val -= 10;
+             i -= 10;
          }
+
+        if(cntr == 0)
+            retNodeFirst = createHeadNode(i);   
+        else{
+            if(cntr == 1)
+                nextNode = createNextNode(i,retNodeFirst);
+            else
+                nextNode = createNextNode(i,nextNode);
+        }
          l1 = l1->next;
          l2 = l2->next;
-         retNode = retNode->next;
      }
      while(l1 != NULL){
-         retNode->val = l1->val;
+         nextNode = createNextNode(i,nextNode);
          l1 = l1->next;
-         retNode = retNode->next;
      }
      while(l2 != NULL){
-         retNode->val = l2->val;
+         nextNode = createNextNode(i,nextNode);         
          l2 = l2->next;
-         retNode = retNode->next;
      }
-     
-     return retNode;      
+     return retNodeFirst;      
     }
 
     ListNode* createHeadNode(int rData){
@@ -94,7 +101,7 @@ int main(){
     //declaration of nodes
     ListNode *l1;
     ListNode *l2;
-
+    ListNode *l3;
     int firstArr[4] = {7,8,9,1};
     int secondArr[4] = {4,6,7,3};
 
@@ -103,6 +110,7 @@ int main(){
     l2 = s1.prefillNode(secondArr,4);
     s1.printList(l1);
     s1.printList(l2);
-
+    l3 = s1.addTwoNumbers(l1,l2);
+    s1.printList(l3);
     cout<< "\nComplete\n"; 
 }
