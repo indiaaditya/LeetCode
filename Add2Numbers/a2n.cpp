@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+#define NODE_HEAD       1
+#define NODE_NEXT       2
 /**
  * Definition for singly-linked list.*/
 struct ListNode
@@ -37,13 +39,13 @@ public:
             }
 
             if (cntr == 0)
-                retNodeFirst = createHeadNode(i);
+                retNodeFirst = createNode(i,NODE_HEAD,NULL);
             else
             {
                 if (cntr == 1)
-                    nextNode = createNextNode(i, retNodeFirst);
+                    nextNode = createNode(i,NODE_NEXT,retNodeFirst);
                 else
-                    nextNode = createNextNode(i, nextNode);
+                    nextNode = createNode(i,NODE_NEXT,nextNode);
             }
             l1 = l1->next;
             l2 = l2->next;
@@ -63,7 +65,7 @@ public:
                 i -= 10;
             }
 
-            nextNode = createNextNode(l1->val, nextNode);
+            nextNode = createNode(l1->val, NODE_NEXT,nextNode);
             l1 = l1->next;
             cntr++;
         }
@@ -80,16 +82,26 @@ public:
                 carry = 1;
                 i -= 10;
             }
-            nextNode = createNextNode(i, nextNode);
+            nextNode = createNode(i,NODE_NEXT,nextNode);
             l2 = l2->next;
             cntr++;
         }
         if (carry == 1)
-            nextNode = createNextNode(1, nextNode);
+            nextNode = createNode(1,NODE_NEXT,nextNode);
         return retNodeFirst;
     }
 
-    ListNode *createHeadNode(int rData)
+    ListNode *createNode(int rData, int nodeType, ListNode *prevNode){
+        ListNode *node;
+        node = new ListNode();
+        node->val = rData;        
+        node->next = NULL;
+        if(nodeType == NODE_NEXT)
+            prevNode->next = node;
+        return node;
+    } 
+
+    /*ListNode *createHeadNode(int rData)
     {
         ListNode *nodeHead;
         nodeHead = new ListNode();
@@ -106,7 +118,7 @@ public:
         nodeNext->next = NULL;
         rPrevNode->next = nodeNext;
         return nodeNext;
-    }
+    }*/
 
     void printList(ListNode *n)
     {
@@ -121,16 +133,16 @@ public:
     ListNode *prefillNode(int *data, int cntr)
     {
         ListNode *nodeFirst;
-        nodeFirst = createHeadNode(*data);
+        nodeFirst = createNode(*data,NODE_HEAD,NULL);
         cntr--;
         data++;
         ListNode *nodeNext;
-        nodeNext = createNextNode(*data, nodeFirst);
+        nodeNext = createNode(*data, NODE_NEXT,nodeFirst);
         cntr--;
         data++;
         for (int i = 0; i < cntr; i++)
         {
-            nodeNext = createNextNode(*data, nodeNext);
+            nodeNext = createNode(*data,NODE_NEXT,nodeNext);
             data++;
         }
         return nodeFirst;
@@ -143,8 +155,8 @@ int main()
     ListNode *l1;
     ListNode *l2;
     ListNode *l3;
-    int firstArr[] = {7, 8, 9, 5};
-    int secondArr[] = {4, 6, 7, 9, 1, 1};
+    int firstArr[] = {5};
+    int secondArr[] = {5};
 
     Solution s1;
     l1 = s1.prefillNode(firstArr, 4);
