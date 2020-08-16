@@ -88,8 +88,9 @@ public:
             l2 = l2->next;
             cntr++;
         }
-        if (carry == 1)
-            prevNode = createNode(i,prevNode);
+        if (carry == 1){
+            prevNode = createNode(carry,prevNode);
+        }
         return firstNode;
     }
 
