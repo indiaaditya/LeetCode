@@ -40,8 +40,10 @@ public:
             if(prevNode == NULL)
                 isFirstNodeFlag = 1;
             prevNode = createNode(i,prevNode);
-            if(isFirstNodeFlag == 1)
+            if(isFirstNodeFlag == 1){
                 firstNode = prevNode;
+                isFirstNodeFlag = 0;
+            }
             l1 = l1->next;
             l2 = l2->next;
             cntr++;
@@ -62,8 +64,10 @@ public:
             if(prevNode == NULL)
                 isFirstNodeFlag = 1;
             prevNode = createNode(i,prevNode);
-            if(isFirstNodeFlag == 1)
+            if(isFirstNodeFlag == 1){
                 firstNode = prevNode;
+                isFirstNodeFlag = 0;
+            }
             l1 = l1->next;
             cntr++;
         }
@@ -83,8 +87,10 @@ public:
             if(prevNode == NULL)
                 isFirstNodeFlag = 1;
             prevNode = createNode(i,prevNode);
-            if(isFirstNodeFlag == 1)
+            if(isFirstNodeFlag == 1){
                 firstNode = prevNode;
+                isFirstNodeFlag = 0;
+            }
             l2 = l2->next;
             cntr++;
         }
