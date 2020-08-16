@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-#define NODE_HEAD       1
-#define NODE_NEXT       2
 /**
  * Definition for singly-linked list.*/
 struct ListNode
@@ -20,8 +18,10 @@ public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
     {
         int carry = 0;
-        ListNode *retNodeFirst;
-        ListNode *nextNode;
+        ListNode *prevNode;
+        ListNode *firstNode;
+        int isFirstNodeFlag = 0;
+        prevNode = NULL;
         int cntr = 0;
         int i;
         while ((l1 != NULL) && (l2 != NULL))
@@ -37,16 +37,11 @@ public:
                 carry = 1;
                 i -= 10;
             }
-
-            if (cntr == 0)
-                retNodeFirst = createNode(i,NODE_HEAD,NULL);
-            else
-            {
-                if (cntr == 1)
-                    nextNode = createNode(i,NODE_NEXT,retNodeFirst);
-                else
-                    nextNode = createNode(i,NODE_NEXT,nextNode);
-            }
+            if(prevNode == NULL)
+                isFirstNodeFlag = 1;
+            prevNode = createNode(i,prevNode);
+            if(isFirstNodeFlag == 1)
+                firstNode = prevNode;
             l1 = l1->next;
             l2 = l2->next;
             cntr++;
@@ -64,8 +59,11 @@ public:
                 carry = 1;
                 i -= 10;
             }
-
-            nextNode = createNode(l1->val, NODE_NEXT,nextNode);
+            if(prevNode == NULL)
+                isFirstNodeFlag = 1;
+            prevNode = createNode(i,prevNode);
+            if(isFirstNodeFlag == 1)
+                firstNode = prevNode;
             l1 = l1->next;
             cntr++;
         }
@@ -82,43 +80,29 @@ public:
                 carry = 1;
                 i -= 10;
             }
-            nextNode = createNode(i,NODE_NEXT,nextNode);
+            if(prevNode == NULL)
+                isFirstNodeFlag = 1;
+            prevNode = createNode(i,prevNode);
+            if(isFirstNodeFlag == 1)
+                firstNode = prevNode;
             l2 = l2->next;
             cntr++;
         }
         if (carry == 1)
-            nextNode = createNode(1,NODE_NEXT,nextNode);
-        return retNodeFirst;
+            prevNode = createNode(i,prevNode);
+        return firstNode;
     }
 
-    ListNode *createNode(int rData, int nodeType, ListNode *prevNode){
+    ListNode *createNode(int rData, ListNode *prevNode){
         ListNode *node;
         node = new ListNode();
         node->val = rData;        
         node->next = NULL;
-        if(nodeType == NODE_NEXT)
+        if(prevNode != NULL)
             prevNode->next = node;
         return node;
     } 
 
-    /*ListNode *createHeadNode(int rData)
-    {
-        ListNode *nodeHead;
-        nodeHead = new ListNode();
-        nodeHead->val = rData;
-        nodeHead->next = NULL;
-        return nodeHead;
-    }
-
-    ListNode *createNextNode(int rData, ListNode *rPrevNode)
-    {
-        ListNode *nodeNext;
-        nodeNext = new ListNode();
-        nodeNext->val = rData;
-        nodeNext->next = NULL;
-        rPrevNode->next = nodeNext;
-        return nodeNext;
-    }*/
 
     void printList(ListNode *n)
     {
@@ -133,18 +117,18 @@ public:
     ListNode *prefillNode(int *data, int cntr)
     {
         ListNode *nodeFirst;
-        nodeFirst = createNode(*data,NODE_HEAD,NULL);
+        nodeFirst = createNode(*data,NULL);
         cntr--;
         data++;
         if (cntr > 0)
         {
             ListNode *nodeNext;
-            nodeNext = createNode(*data, NODE_NEXT, nodeFirst);
+            nodeNext = createNode(*data,nodeFirst);
             cntr--;
             data++;
             for (int i = 0; i < cntr; i++)
             {
-                nodeNext = createNode(*data, NODE_NEXT, nodeNext);
+                nodeNext = createNode(*data,nodeNext);
                 data++;
             }
         }
