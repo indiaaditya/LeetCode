@@ -143,12 +143,12 @@ int main()
     ListNode *l1;
     ListNode *l2;
     ListNode *l3;
-    int firstArr[] = {5};
-    int secondArr[] = {5};
+    int firstArr[] = {2,4,3};
+    int secondArr[] = {5,6,4};
 
     Solution s1;
-    l1 = s1.prefillNode(firstArr, 1);
-    l2 = s1.prefillNode(secondArr, 1);
+    l1 = s1.prefillNode(firstArr, 3);
+    l2 = s1.prefillNode(secondArr, 3);
     s1.printList(l1);
     s1.printList(l2);
     l3 = s1.addTwoNumbers(l1, l2);
