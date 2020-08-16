@@ -136,14 +136,17 @@ public:
         nodeFirst = createNode(*data,NODE_HEAD,NULL);
         cntr--;
         data++;
-        ListNode *nodeNext;
-        nodeNext = createNode(*data, NODE_NEXT,nodeFirst);
-        cntr--;
-        data++;
-        for (int i = 0; i < cntr; i++)
+        if (cntr > 0)
         {
-            nodeNext = createNode(*data,NODE_NEXT,nodeNext);
+            ListNode *nodeNext;
+            nodeNext = createNode(*data, NODE_NEXT, nodeFirst);
+            cntr--;
             data++;
+            for (int i = 0; i < cntr; i++)
+            {
+                nodeNext = createNode(*data, NODE_NEXT, nodeNext);
+                data++;
+            }
         }
         return nodeFirst;
     }
