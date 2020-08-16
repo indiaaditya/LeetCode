@@ -159,8 +159,8 @@ int main()
     int secondArr[] = {5};
 
     Solution s1;
-    l1 = s1.prefillNode(firstArr, 4);
-    l2 = s1.prefillNode(secondArr, 4);
+    l1 = s1.prefillNode(firstArr, 1);
+    l2 = s1.prefillNode(secondArr, 1);
     s1.printList(l1);
     s1.printList(l2);
     l3 = s1.addTwoNumbers(l1, l2);
