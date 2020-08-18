@@ -38,7 +38,8 @@ public:
                 traverseStartPoint++;
                 if (maxLength >= (iTraverse - traverseStartPoint) || (repeatitionFoundBeforeEnd == 0)){
                     isTraverseComplete = 1;
-                    maxLength++;
+                    if(repeatitionFoundBeforeEnd == 0)
+                        maxLength++;
                 }
             }
         }
