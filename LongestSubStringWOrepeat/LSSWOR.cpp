@@ -33,13 +33,11 @@ public:
                     lengthCntr++;
                 }
                 if ((lengthCntr - 1) > maxLength)
-                    maxLength = lengthCntr;
+                    maxLength = lengthCntr + 1;
                 traverseStartPoint++;
                 if (maxLength >= (iTraverse - traverseStartPoint) || repeatitionFoundBeforeEnd == 0)
                     isTraverseComplete = 1;
             }
-            if(maxLength == 0)
-                maxLength = 1;
         }
         return maxLength;
     }
