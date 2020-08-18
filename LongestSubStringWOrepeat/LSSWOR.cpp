@@ -12,21 +12,24 @@ public:
         int traverseStartPoint = 0;
         int maxLength = 0;
         int lengthCntr = 0;
+        int repeatitionFoundBeforeEnd = 0;
         while(isTraverseComplete == 0){
             lengthCntr = 0;
             charArr.fill(0);
             for(int i = traverseStartPoint; i < iTraverse ; i++){
-                lengthCntr++;
                 charArr[s[i]]++;
                 if(charArr[s[i]] > 1){
-                   charArr[s[i]]--; 
                    if(lengthCntr > maxLength)
                     maxLength = lengthCntr;
-                   i = iTraverse + 1;      
+                   i = iTraverse + 1;
+                   repeatitionFoundBeforeEnd = 1;      
                 }
+                lengthCntr++;
             }
+            if((lengthCntr - 1) > maxLength)
+                maxLength = lengthCntr;
             traverseStartPoint++;
-            if(maxLength >= (iTraverse - traverseStartPoint))
+            if(maxLength >= (iTraverse - traverseStartPoint) || repeatitionFoundBeforeEnd == 0)
                 isTraverseComplete = 1;
         }
         return maxLength;
