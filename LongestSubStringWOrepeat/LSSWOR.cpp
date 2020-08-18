@@ -6,7 +6,25 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         int iTraverse = s.length();
-        return iTraverse;
+        char charArr[256];
+        int isTraverseComplete = 0;
+        int traverseStartPoint = 0;
+        int maxLength = 0;
+        while(isTraverseComplete == 0){
+            for(int i = traverseStartPoint; i < iTraverse ; i++){
+                charArr[s[i]]++;
+                if(charArr[s[i]] > 1){
+                   charArr[s[i]]--; 
+                   if(i > maxLength)
+                    maxLength = i;
+                   i = iTraverse + 1;      
+                }
+            }
+            traverseStartPoint++;
+            if(maxLength >= (iTraverse - traverseStartPoint))
+                isTraverseComplete = 1;
+        }
+        return maxLength;
     }
 };
 
