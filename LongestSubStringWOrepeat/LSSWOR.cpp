@@ -1,4 +1,5 @@
 #include <iostream>
+#include <array>
 using namespace std;
 
 
@@ -6,13 +7,14 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         int iTraverse = s.length();
-        char charArr[256];
+        std::array<int, 256> charArr;
         int isTraverseComplete = 0;
         int traverseStartPoint = 0;
         int maxLength = 0;
         int lengthCntr = 0;
         while(isTraverseComplete == 0){
             lengthCntr = 0;
+            charArr.fill(0);
             for(int i = traverseStartPoint; i < iTraverse ; i++){
                 lengthCntr++;
                 charArr[s[i]]++;
