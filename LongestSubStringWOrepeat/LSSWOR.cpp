@@ -34,12 +34,12 @@ public:
                 }
                 if ((lengthCntr - 1) >= maxLength)
                     maxLength = lengthCntr -1;
-                if(maxLength == 0)
-                    maxLength++;
 
                 traverseStartPoint++;
-                if (maxLength >= (iTraverse - traverseStartPoint) || repeatitionFoundBeforeEnd == 0)
+                if (maxLength >= (iTraverse - traverseStartPoint) || (repeatitionFoundBeforeEnd == 0)){
                     isTraverseComplete = 1;
+                    maxLength++;
+                }
             }
         }
         return maxLength;
