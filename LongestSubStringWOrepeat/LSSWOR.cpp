@@ -2,10 +2,11 @@
 #include <array>
 using namespace std;
 
-
-class Solution {
+class Solution
+{
 public:
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring(string s)
+    {
         int iTraverse = s.length();
         std::array<int, 256> charArr;
         int isTraverseComplete = 0;
@@ -13,29 +14,36 @@ public:
         int maxLength = 0;
         int lengthCntr = 0;
         int repeatitionFoundBeforeEnd = 0;
-        while(isTraverseComplete == 0){
-            lengthCntr = 0;
-            charArr.fill(0);
-            for(int i = traverseStartPoint; i < iTraverse ; i++){
-                charArr[s[i]]++;
-                if(charArr[s[i]] > 1){
-                   if(lengthCntr > maxLength)
-                    maxLength = lengthCntr;
-                   i = iTraverse + 1;
-                   repeatitionFoundBeforeEnd = 1;      
+        if (iTraverse > 0)
+        {
+            while (isTraverseComplete == 0)
+            {
+                lengthCntr = 0;
+                charArr.fill(0);
+                for (int i = traverseStartPoint; i < iTraverse; i++)
+                {
+                    charArr[s[i]]++;
+                    if (charArr[s[i]] > 1)
+                    {
+                        if (lengthCntr > maxLength)
+                            maxLength = lengthCntr;
+                        i = iTraverse + 1;
+                        repeatitionFoundBeforeEnd = 1;
+                    }
+                    lengthCntr++;
                 }
-                lengthCntr++;
+                if ((lengthCntr - 1) > maxLength)
+                    maxLength = lengthCntr;
+                traverseStartPoint++;
+                if (maxLength >= (iTraverse - traverseStartPoint) || repeatitionFoundBeforeEnd == 0)
+                    isTraverseComplete = 1;
             }
-            if((lengthCntr - 1) > maxLength)
-                maxLength = lengthCntr;
-            traverseStartPoint++;
-            if(maxLength >= (iTraverse - traverseStartPoint) || repeatitionFoundBeforeEnd == 0)
-                isTraverseComplete = 1;
+            if(maxLength == 0)
+                maxLength = 1;
         }
         return maxLength;
     }
 };
-
 
 int main()
 {
